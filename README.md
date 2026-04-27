@@ -31,3 +31,5 @@ FOOTER
 Diferencias Clave:
 ID (#): Único en el documento. Alta prioridad.
 Clase (.): Reutilizable en múltiples elementos. 
+
+Las pseudo-clases CSS son palabras clave que se añaden a los selectores para definir un estado especial de un elemento, permitiendo aplicar estilos dinámicos sin usar JavaScript. Se inician con dos puntos (:) y responden a interacciones de usuario (como :hover) o a la estructura del documento (como :first-child)
