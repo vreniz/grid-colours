@@ -27,3 +27,7 @@ FORM
 FOOTER
 <!-- FOOTER: Contact info, social media and links -->
 <footer class="site-footer">
+
+Diferencias Clave:
+ID (#): Único en el documento. Alta prioridad.
+Clase (.): Reutilizable en múltiples elementos. 
