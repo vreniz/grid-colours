@@ -1,17 +1,22 @@
 /* =========================================
-   VOID CIRCUIT — styles.css
-   Rock band adaptation
+   SHATTERED RIFFS — styles.css
+   Rock band 
    ========================================= */
 
 /* --- CSS Variables --- */
+/* =========================================
+   1. CSS VARIABLES
+   Central design tokens used throughout
+   the stylesheet. 
+   ========================================= */
 :root {
-    --bg: #080808;
-    --surface: #111111;
-    --border: rgba(232, 0, 61, 0.2);
-    --red: #e8003d;
-    --orange: #ff5500;
-    --text: #f0ede8;
-    --muted: #6a6560;
+    --bg: #080808;  /* Page background — near black */
+    --surface: #111111;  /* Card / panel background */
+    --border: rgba(232, 0, 61, 0.2);  /* Subtle red-tinted border */
+    --red: #e8003d; /* Brand accent colour */
+    --orange: #ff5500; 
+    --text: #f0ede8; /* Primary text — warm white */
+    --muted: #6a6560;  /* Secondary / subdued text */
     --cyan: #00c8a0;
     --shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
 
@@ -46,15 +51,13 @@ body {
 }
 
 /* Grain texture overlay on body */
-body::before {
+/* body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.03;
     pointer-events: none;
-    z-index: 9999;
-}
+    z-index: 6;
+} */
 
 img,
 iframe {
@@ -72,7 +75,7 @@ ul {
 }
 
 /* --- Utility --- */
-.sr-only {
+/* .sr-only {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -82,7 +85,7 @@ ul {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
-}
+} */
 
 /* =========================================
    HEADER / NAVBAR
@@ -90,7 +93,7 @@ ul {
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 4;
     background: rgba(8, 8, 8, 0.96);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
@@ -108,6 +111,7 @@ ul {
     background: linear-gradient(90deg, transparent, var(--red), transparent);
     animation: scanline 3s ease-in-out infinite;
 }
+
 
 @keyframes scanline {
     0%, 100% { opacity: 0.3; }
@@ -143,6 +147,8 @@ ul {
     flex-shrink: 0;
 }
 
+
+
 .brand span {
     color: var(--text);
 }
@@ -169,8 +175,7 @@ ul {
 }
 
 /* CTA + general .btn */
-.nav-cta,
-.btn,
+.nav-cta,.btn,
 .ticket-form button {
     background: var(--red);
     color: #fff;
@@ -186,7 +191,7 @@ ul {
     cursor: pointer;
     box-shadow: 0 0 20px rgba(232, 0, 61, 0.35);
     transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
-    display: inline-block;
+    display: inline-block; /*aligns elements next to each other respecting width, height and margin*/
     line-height: 1;
 }
 
@@ -232,56 +237,30 @@ ul {
     padding: 80px 45px;
 }
 
-/* Background — dark photo with red gradient overlay */
+/* Background — dark photo with red gradient overlay like a box without html */
 .hero::before {
     content: "";
     position: absolute;
-    inset: 40px 20px;
+    inset: 40px 20px; /*top -, bottom,right- left*/
     border-radius: var(--radius);
     background:
-        linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.15) 100%),
-        url('../assets/img/hero-bg.jpg') center / cover no-repeat;
+        linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.15) 100%), /*color transition to the right*/
+        url('../assets/img/hero-bg.jpg') center / cover ;
     z-index: -2;
     box-shadow: var(--shadow);
 }
 
-/* Red corner accent */
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 40px;
-    left: 20px;
-    width: 6px;
-    height: 80px;
-    background: var(--red);
-    border-radius: 0 0 0 var(--radius);
-    z-index: 2;
-}
 
-/* Gradient overlay */
+/* Gradient overlay(supr post) redish effect; circular color transition*/
 .hero-overlay {
     position: absolute;
     inset: 40px 20px;
     border-radius: var(--radius);
-    background: radial-gradient(circle at 70% 20%, rgba(232, 0, 61, 0.12), transparent 32%);
+    background: radial-gradient(circle at 70% 20%, rgba(232, 0, 61, 0.12), transparent 32%);/*circular color transition*/
     z-index: -1;
 }
 
-/* Decorative SVG waves */
-.hero-waves {
-    position: absolute;
-    top: 38%;
-    right: 2%;
-    width: 58%;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.hero-waves svg {
-    width: 100%;
-}
-
-/* Spark element — replaces moon */
+/* Spark element-enters with ease leaves with ease */
 .hero-spark {
     position: absolute;
     top: 12%;
@@ -305,7 +284,7 @@ ul {
 .hero-content {
     position: relative;
     z-index: 2;
-    display: contents;
+    display: contents; /*container disappears visually for layout*/
 }
 
 /* Left column */
@@ -326,7 +305,7 @@ ul {
 h1,
 h2,
 h3 {
-    line-height: 1.0;
+    line-height: 1.0; /*deletes xtra space*/
 }
 
 h1 {
@@ -338,13 +317,13 @@ h1 {
     margin: 12px 0;
     text-transform: uppercase;
     color: var(--text);
-    letter-spacing: -1px;
+    letter-spacing: 1px;
 }
 
 .hero-desc {
     color: #9a9088;
     font-size: 0.9rem;
-    max-width: 46ch;
+    max-width: 46ch; /*character width: avoid big block text */
     margin: 14px 0;
     line-height: 1.7;
 }
@@ -361,7 +340,7 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    align-self: end;
+    align-self: end; /*changes alignment of one element*/
 }
 
 /* Mockup card */
@@ -376,19 +355,19 @@ h1 {
 
 /* Badge card — starts hidden, animates in via JS */
 #badgeCard {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 0; /*not viisble*/
+    transform: translateY(20px); /*its down*/
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 #badgeCard.badge-visible {
-    opacity: 1;
+    opacity: 1;/*visible*/
     transform: translateY(0);
 }
 
 .badge-card {
     background: rgba(12, 8, 8, 0.9);
-    border-left: 3px solid var(--red);
+    border-left: 3px solid var(--red); /*card border*/
 }
 
 .card-label {
@@ -423,7 +402,7 @@ h1 {
 .section {
     max-width: var(--max-w);
     margin: 0 auto;
-    padding: 70px 20px;
+    padding: 70px 20px;/*up-down; left right*/
 }
 
 .section-title {
@@ -450,12 +429,11 @@ h1 {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 12px;
-    -webkit-overflow-scrolling: touch;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /*desapears spce btween cells*/
     min-width: 650px;
 }
 
@@ -504,12 +482,12 @@ tbody tr:hover {
     object-fit: cover;
     object-position: center;
     position: absolute;
-    inset: 0;
-    display: block;
+    inset: 0; /*get all  available borders*/
+    display: block; /*clear dimensions for any white space*/
 }
 
 .about-content {
-    flex: 1;
+    flex: 1; /*summarize grow, hrink and basis*/
 }
 
 .about-content p {
@@ -522,7 +500,7 @@ tbody tr:hover {
     margin-top: 18px;
     display: grid;
     gap: 10px;
-    list-style-position: inside;
+    /*list-style-position: inside; push the tag inside */
     color: #d0c8c0;
 }
 
@@ -540,8 +518,8 @@ tbody tr:hover {
 }
 
 .zone-card {
-    perspective: 150rem;
-    -moz-perspective: 150rem;
+    perspective: 150rem;/*3d perspective: ;*/
+    -moz-perspective: 150rem; /*old versions of chrome*/
     position: relative;
     height: 220px;
 }
@@ -556,14 +534,14 @@ tbody tr:hover {
     border-radius: var(--radius);
     overflow: hidden;
     backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /*hides the back of the element on safari and other browsers*/
     transition: all 0.8s ease;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem; /*top-bottom; right-left*/
     text-align: center;
 }
 
@@ -574,7 +552,7 @@ tbody tr:hover {
 
 .zone-front span {
     font-size: 2rem;
-    display: block;
+    display: block; /*takes all space & skips line for div, h1 and p*/
     margin-bottom: 0.75rem;
 }
 
@@ -595,7 +573,7 @@ tbody tr:hover {
 }
 
 .zone-back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg); /*its rotated to be at the back*/
     background-size: cover;
     background-position: center;
     background-color: #1a0808;
@@ -604,25 +582,25 @@ tbody tr:hover {
 
 .zone-back-content {
     position: absolute;
-    inset: 0;
+    inset: 0; /*perfect fit: top 0,bottom: 0, right: 0;*/
     border-radius: var(--radius);
     background: linear-gradient(
         to top,
         rgba(0, 0, 0, 0.9) 0%,
         rgba(0, 0, 0, 0.3) 100%
-    );
+    ); /*visual effect starts at the top*/
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    padding: 1.75rem 1.5rem;
+    padding: 1.75rem 1.5rem; /*top-bottom; right-left*/
     text-align: center;
 }
 
-.album-1 { background-image: url('../assets/img/album-collapse.jpg'); }
-.album-2 { background-image: url('../assets/img/album-frequency.jpg'); }
-.album-3 { background-image: url('../assets/img/album-live.jpg'); }
-.album-4 { background-image: url('../assets/img/album-static.jpg'); }
+.album-1 { background-image: url('../assets/img/collapse.jpeg'); }
+.album-2 { background-image: url('../assets/img/frequency.jpeg'); }
+.album-3 { background-image: url('../assets/img/live.jpeg'); }
+.album-4 { background-image: url('../assets/img/static.jpg'); }
 
 .zone-back-content h3 {
     font-family: var(--font-display);
@@ -641,11 +619,11 @@ tbody tr:hover {
 }
 
 .zone-card:hover .zone-front {
-    transform: rotateY(-180deg);
+    transform: rotateY(-180deg); /*during hover rotates*/
 }
 
 .zone-card:hover .zone-back {
-    transform: rotateY(0);
+    transform: rotateY(0); /*goes back to the back */
 }
 
 /* =========================================
@@ -697,17 +675,17 @@ tbody tr:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center; /*centers & occupies all space*/
     position: absolute;
-    inset: 0;
-    display: block;
+    inset: 0; /*makes sure is a perfect fit*/
+    display: block; /*solid block better adjustment*/
     transition: transform 0.4s ease;
-    filter: grayscale(20%);
+    filter: grayscale(20%);/*converts 20%  grayscale looks muted*/
 }
 
 .gallery-card:hover .gallery-card-inner img {
     transform: scale(1.05);
-    filter: grayscale(0%);
+    filter: grayscale(0%);;/*converts 0% a grayscale to make it clear*/
 }
 
 .gallery-label {
@@ -734,35 +712,35 @@ tbody tr:hover {
     margin: 0 auto 1.5rem;
     max-width: 700px;
     border-radius: var(--radius);
-    overflow: hidden;
+    overflow: hidden; /*cuts anything that is too big*/
     border: 1px solid var(--border);
 }
 
 .video-container iframe {
     width: 100%;
-    aspect-ratio: 16/9;
-    height: auto;
+    aspect-ratio: 16/9; /*aspect relation width:/height;*/
+    height: auto; /*allows aspect radio to decided height*/
 }
 
 .video-description {
     font-size: 0.82rem;
     color: var(--muted);
-    max-width: 55ch;
-    margin: 0 auto;
+    max-width: 55ch; /*caracter shortened per line, improves readability*/
+    margin: 0 auto; /*vertical and horizontal*/
     line-height: 1.7;
 }
 
 /* =========================================
-   MERCH / CTA
+   tickects
    ========================================= */
 .tickets {
     background:
         linear-gradient(135deg, rgba(232, 0, 61, 0.15) 0%, rgba(8, 8, 8, 1) 60%),
-        #0c0c0c;
+        #0c0c0c; /*visual effect*/
     border: 1px solid var(--border);
     border-radius: var(--radius);
     max-width: 720px;
-    margin: 0 auto 80px;
+    margin: 0 auto 80px; /*up, left or right, down*/
     padding: 3.5rem 2rem;
     text-align: center;
 }
@@ -789,7 +767,7 @@ tbody tr:hover {
     justify-content: center;
     flex-wrap: wrap;
     max-width: 480px;
-    margin: 0 auto;
+    margin: 0 auto; /* top*/
 }
 
 .ticket-form input {
@@ -802,7 +780,7 @@ tbody tr:hover {
     color: var(--text);
     font-family: var(--font-body);
     font-size: 0.85rem;
-    outline: none;
+    outline: none; /*takes away default outline (accesibility)*/
     transition: border-color var(--transition);
 }
 
@@ -811,7 +789,7 @@ tbody tr:hover {
 }
 
 .ticket-form input:focus {
-    border-color: var(--red);
+    border-color: var(--red); /*new outline for keyword accesibility*/
 }
 
 /* =========================================
@@ -819,7 +797,7 @@ tbody tr:hover {
    ========================================= */
 .sponsors {
     background: var(--bg);
-    padding-block: 4rem;
+    padding-block: 4rem; /*same padding top and bottom*/
 }
 
 .sponsors-title {
@@ -835,15 +813,15 @@ tbody tr:hover {
     margin-bottom: 2rem;
     margin-top: 0.5rem;
     max-width: 60ch;
-    margin-inline: auto;
+    margin-inline: auto; /*summarize margin-left y margin-right*/
 }
 
 .sponsors-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /*allows going to the next line*/
     gap: 1rem;
     justify-content: center;
-    align-items: stretch;
+    align-items: stretch; /*strechts same height all elements*/;
     margin-top: 1.5rem;
 }
 
@@ -860,12 +838,13 @@ tbody tr:hover {
     border-radius: var(--radius);
     cursor: pointer;
     transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    /*sumarize  timer for border color, transform y box-shadow*/
 }
 
 .sponsor-card:hover {
     border-color: rgba(232, 0, 61, 0.5);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px); /*floats up or forward*/
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);/*starts; blur; color*/
 }
 
 .sponsor-logo {
@@ -878,16 +857,16 @@ tbody tr:hover {
 .sponsor-logo img {
     max-height: 44px;
     max-width: 120px;
-    object-fit: contain;
-    mix-blend-mode: lighten;
-    filter: grayscale(1) brightness(1.4);
-    opacity: 0.7;
-    transition: filter var(--transition), opacity var(--transition);
+    object-fit: cover;
+    mix-blend-mode: lighten; /*lighten darkest colors*/
+    filter: grayscale(1) brightness(1.4); /*make it gray and a bright grey*/
+    opacity: 0.7; /*semi transparent*/
+    transition: filter var(--transition), opacity var(--transition); /*timer for hover*/
 }
 
 .sponsor-card:hover .sponsor-logo img {
-    filter: grayscale(0) brightness(1.2);
-    opacity: 1;
+    filter: grayscale(0) brightness(1.2); /*back to original color and brighter*/
+    opacity: 1; /*visible no transparency & at max intensity*/
 }
 
 .sponsor-name {
@@ -898,11 +877,11 @@ tbody tr:hover {
     letter-spacing: 0.1em;
     color: var(--muted);
     text-transform: uppercase;
-    transition: color var(--transition);
+    transition: color var(--transition); /*grey text for a future hover */
 }
 
 .sponsor-card:hover .sponsor-name {
-    color: var(--red);
+    color: var(--red); /*turns into red text hover*/
 }
 
 /* =========================================
@@ -911,15 +890,15 @@ tbody tr:hover {
 .site-footer {
     background: var(--bg);
     border-top: 1px solid var(--border);
-    padding: 3rem 20px;
+    padding: 3rem 20px; /*vertical and horizontal*/
     display: grid;
     grid-template-columns: 1.5fr repeat(3, 1fr);
     gap: 2rem;
     max-width: var(--max-w);
-    margin: 0 auto;
+    margin: 0 auto; /*centers horizontally 0 up or down and centers auto horizontally*/
 }
 
-.footer-section h5 {
+.footer-section h4 {
     font-family: var(--font-display);
     font-weight: 900;
     font-style: italic;
@@ -929,14 +908,14 @@ tbody tr:hover {
     text-transform: uppercase;
     margin-bottom: 0.5rem;
 }
-
-.footer-section h5 + p {
+/*adyacent selector only p is affected(only the inmediate)*/
+.footer-section h3 + p {
     font-size: 0.78rem;
     color: var(--muted);
-    line-height: 1.55;
+    line-height: 1.55; /*space in between lines*/
 }
 
-.footer-section h6 {
+.footer-section h5 {
     font-size: 0.68rem;
     font-weight: 500;
     letter-spacing: 2px;
@@ -944,6 +923,7 @@ tbody tr:hover {
     color: var(--muted);
     margin-bottom: 1rem;
 }
+
 
 .contact-list li {
     font-size: 0.82rem;
@@ -985,11 +965,12 @@ tbody tr:hover {
 .social-links a img {
     width: 20px;
     height: 20px;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
 }
 
 .social-links a:hover img {
+    /*combination for red filter matching the web color palette*/
     filter: brightness(0) saturate(100%) invert(15%) sepia(100%) saturate(5000%) hue-rotate(340deg);
 }
 
@@ -1017,7 +998,7 @@ tbody tr:hover {
 }
 
 /* =========================================
-   RESPONSIVE — TABLET
+   RESPONSIVE — TABLET (max this size)
    ========================================= */
 @media (max-width: 1024px) {
     .hero {
@@ -1034,10 +1015,6 @@ tbody tr:hover {
         top: 6%;
         left: auto;
         right: 5%;
-    }
-
-    .hero-waves {
-        display: none;
     }
 
     .about-section {
@@ -1069,10 +1046,11 @@ tbody tr:hover {
     .site-footer {
         grid-template-columns: 1fr 1fr;
     }
+
 }
 
 /* =========================================
-   RESPONSIVE — MOBILE
+   RESPONSIVE — MOBILE (max this size)
    ========================================= */
 @media (max-width: 735px) {
 
@@ -1087,20 +1065,16 @@ tbody tr:hover {
         padding: 0.3rem 0.5rem;
         background: none;
         border: none;
-        z-index: 110;
+        z-index: 5;
         order: 3;
     }
 
     .brand {
         order: 1;
     }
-
-    .nav-cta {
-        display: none;
-    }
-
+    
     .nav-links {
-        display: none;
+        display: none; /*disapears*/
         position: absolute;
         top: var(--nav-h);
         left: 0;
@@ -1108,12 +1082,12 @@ tbody tr:hover {
         flex-direction: column;
         gap: 0;
         background: rgba(8, 8, 8, 0.98);
-        backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px); /*blur filter*/
         border-bottom: 1px solid var(--border);
-        padding: 0.5rem 0;
-        z-index: 99;
+        padding: 0.5rem 0; /*space up/down and left and right*/
+        z-index: 3;
     }
-
+    /*general sibbling selector*/
     .menu-toggle:checked ~ .nav-links {
         display: flex;
     }
@@ -1129,6 +1103,7 @@ tbody tr:hover {
         color: var(--text);
         border-bottom: 1px solid var(--border);
         transition: background var(--transition), color var(--transition);
+        /*soft color transition*/
     }
 
     .nav-links a:hover {
@@ -1141,7 +1116,7 @@ tbody tr:hover {
     }
 
     .hero::before {
-        inset: 20px 12px;
+        inset: 20px 12px; /*strech element this time smaller than father*/
     }
 
     .hero-overlay {
@@ -1166,7 +1141,6 @@ tbody tr:hover {
 
     .table-wrapper {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
         border-radius: var(--radius);
         padding: 0;
     }
@@ -1210,7 +1184,7 @@ tbody tr:hover {
     }
 
     .tickets {
-        margin: 0 16px 60px;
+        margin: 0 16px 60px; /*up-side-down*/
     }
 
     .site-footer {
